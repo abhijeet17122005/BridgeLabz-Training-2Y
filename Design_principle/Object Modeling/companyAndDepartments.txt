@@ -1,0 +1,104 @@
+import java.util.ArrayList;
+
+// Employee class (lives inside Department)
+class Employee {
+    String name;
+
+    Employee(String name) {
+        this.name = name;
+    }
+
+    void showEmployee() {
+        System.out.println("Employee: " + name);
+    }
+}
+
+// Department class (lives inside Company)
+class Department {
+    String deptName;
+    ArrayList<Employee> employees;
+
+    Department(String deptName) {
+        this.deptName = deptName;
+        this.employees = new ArrayList<>();
+    }
+
+    void addEmployee(String empName) {
+        employees.add(new Employee(empName));
+    }
+
+    void showDepartment() {
+        System.out.println(" Department: " + deptName);
+        for (Employee e : employees) {
+            e.showEmployee();
+        }
+    }
+}
+
+// Company class (owns Departments and indirectly Employees)
+class Company {
+    String companyName;
+    ArrayList<Department> departments;
+
+    Company(String companyName) {
+        this.companyName = companyName;
+        this.departments = new ArrayList<>();
+    }
+
+    void addDepartment(String deptName) {
+        departments.add(new Department(deptName));
+    }
+
+    Department getDepartment(String deptName) {
+        for (Department d : departments) {
+            if (d.deptName.equals(deptName)) {
+                return d;
+            }
+        }
+        return null;
+    }
+
+    void showCompany() {
+        System.out.println("Company: " + companyName);
+        for (Department d : departments) {
+            d.showDepartment();
+        }
+        System.out.println();
+    }
+
+    // Simulate company deletion
+    void deleteCompany() {
+        System.out.println("Deleting company: " + companyName + "...");
+        departments.clear();  // Removes all departments and employees
+    }
+}
+
+// Main class to demonstrate composition
+public class CompositionDemo {
+    public static void main(String[] args) {
+        // Create company
+        Company comp = new Company("TechCorp");
+
+        // Add departments
+        comp.addDepartment("IT");
+        comp.addDepartment("HR");
+
+        // Add employees to IT
+        Department itDept = comp.getDepartment("IT");
+        itDept.addEmployee("Alice");
+        itDept.addEmployee("Bob");
+
+        // Add employees to HR
+        Department hrDept = comp.getDepartment("HR");
+        hrDept.addEmployee("Charlie");
+
+        // Show company details
+        comp.showCompany();
+
+        // Delete company
+        comp.deleteCompany();
+
+        // Try showing again (should be empty)
+        comp.showCompany();
+    }
+}
