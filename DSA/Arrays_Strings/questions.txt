@@ -1,0 +1,6 @@
+sum of 1d arrays ;
+take an array mixed of +ve and -ve numbers than the output should be alternate posite and -ve .
+Take a string from a user and check if the string has all the unique values.
+Write the code to perform the sum of the array using the rescursion.
+Check if the string is palindrome or not using recursion. 
+Convert a string to a number.
