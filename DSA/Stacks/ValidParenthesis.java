@@ -1,6 +1,5 @@
-package Stack;
-
 import java.util.Stack;
+import java.util.*;
 
 public class ValidParenthesis {
 
@@ -36,7 +35,8 @@ public class ValidParenthesis {
 
     public static void main(String[] args) {
 
-        String S = "{[()]}";
+        Scanner sc = new Scanner(System.in);    
+        String S = sc.nextLine();
 
         if(isValid(S))
             System.out.println("Valid Parenthesis");
